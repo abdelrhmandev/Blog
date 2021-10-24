@@ -1,0 +1,150 @@
+<?php
+
+//namespace App\Http\Controllers\Backend\Back;
+use Yajra\Datatables\Datatables;
+use App\DataTables\Places\CityDataTable;
+use Illuminate\Support\Facades\DB;
+use App\Models\Country_translation;
+use App\Models\Country;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Area_translation;
+use App\Models\City_translation;
+use App\Models\Area;
+use App\Models\City;
+class CityController extends Controller
+{
+    public function __construct(){
+        $this->middleware('auth:admin');    
+		$this->model =  '\App\Models\city';
+        $this->bladepathfolder = 'backend'.'.'.'places'.'.'.'cities';
+        $this->single = "city";        
+        $this->array = [
+			'model'=>$this->model,
+			'resources'=>'cities',
+			'bladepathfolder'=>$this->bladepathfolder,
+			'single'=>$this->single,
+        ];
+    }
+	public function index(CityDatatable $city) {	
+        $balde_file_path = $this->bladepathfolder.'.'.__FUNCTION__;  	   
+        $counter = count($this->model::all());
+        $countries =\App\Models\Country::all();
+        return $city->render($balde_file_path, ['counter'=>$counter,'countries'=>$countries,'array'=> $this->array]);   
+     }
+
+  
+    public function create()
+    {
+        $balde_file_path = $this->bladepathfolder.'.'.__FUNCTION__;  	   
+        $countries =\App\Models\Country::where('id',1)->first();
+        $lang=app()->getLocale();
+        return view($balde_file_path, ['countries'=>$countries,'lang'=>$lang,'array'=> $this->array]);
+    }
+
+    
+    public function store(Request $request)
+    {
+        $request->validate([
+            'country_id'=>'required',
+            'area_id'=>'required',
+            'title.*'=>'required',
+        ]);
+        DB::beginTransaction();
+       
+        try{
+     
+        $id=DB::table('Cities')->insertGetId([  
+                'area_id'=>$request->area_id,
+             ]);
+            
+
+          foreach($request->title as $key=>$tittle){
+            DB::table('city_translations')->insert([  
+                'city_id'=>$id,
+                'tittle'=>$tittle,
+                'lang'=>$key,
+            ]);
+            }
+            DB::commit();
+            return back()->with('success' , trans('city.storeMessageSuccess')); 
+     
+        } catch (\Exception $e) {
+            DB::rollback();
+            dd($e->getMessage());
+            return back()->with('danger' , $e->getMessage());
+         }
+     
+    }
+
+    public function show($id)
+    {
+        //
+    }
+
+   
+    public function edit($id)
+    {
+        $title_ar=City_translation::where('city_id',$id)->where('lang','ar')->first();
+        $title_en=City_translation::where('city_id',$id)->where('lang','en')->first();
+        $city=City::where('id',$id)->first();
+        $countries=Country::where('id',1)->first();
+        $areas=Area::where('country_id',$countries->id)->get();
+        $array=$this->array;
+        $id=$id;
+        $lang=app()->getLocale();
+	    return view('backend.places.cities.edit', ['title_en'=>$title_en,'title_ar'=>$title_ar,'areas'=>$areas,'id'=>$id,'lang'=>$lang,'array'=>$this->array,'cities'=>$city,'countries'=>$countries]); 
+    }
+
+    
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'country_id'=>'required',
+            'area_id'=>'required',
+            'title.*'=>'required',
+        ]);
+        try{
+         
+            DB::table('cities')->where('id',$id)->update(array(
+                'area_id'=>$request->area_id,
+            ));
+            
+
+          foreach($request->title as $key=>$tittle){
+            DB::table('city_translations')->where('city_id',$id)->where('lang',$key)->update([  
+                'city_id'=>$id,
+                'tittle'=>$tittle,
+                'lang'=>$key,
+            ]);
+            }
+            return back()->with('success' , trans('city.updateMessageSuccess')); 
+     
+        } catch (\Exception $e) {
+            DB::rollback();
+            dd($e->getMessage());
+            // return back()->with('danger' , $e->getMessage());
+         }
+    }
+	public function multi_delete() {
+		if (is_array(request('item'))) {
+			foreach (request('item') as $id) {
+				$items = City::findOrFail($id);
+				$items->delete();
+			}
+		} else {
+			$items =City::findOrFail(request('item'));
+			$items->delete();
+		}
+        return back()->with('success' , trans('city.deleteMessageSuccess')); 
+
+
+    }
+   
+    public function destroy($id)
+    {
+        City::findOrFail($id)->delete();
+        City_translation::where('city_id',$id)->delete();
+	    return back()->with('success' , trans('city.deleteMessageSuccess')); 
+    }
+}

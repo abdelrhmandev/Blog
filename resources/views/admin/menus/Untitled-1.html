@@ -1,0 +1,77 @@
+<!doctype html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<title>Abdo Menu</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+ <style>
+ 
+  </style>
+</head>
+<body>
+    <div class="container">
+ 
+ 
+ 
+        <section>
+ 
+ 
+            <ul class="menu ui-sortable" id="menuitems">
+
+
+              
+              <li data-id ="1" class="list-group-item">
+                
+                <span class="glyphicon glyphicon-move"></span>
+                <a data-toggle="collapse" href="#collapse1">Home</a>
+
+        <div id="collapse1" class="collapse">
+       
+        </div>
+              </li>
+
+        
+
+
+              <li data-id ="2" class="list-group-item">
+                
+                <span class="glyphicon glyphicon-move"></span>
+                <a data-toggle="collapse" href="#collapse2">About US</a>
+                <div id="collapse2" class="collapse">
+                  <div class="input-box">
+                    <form method="post" action="">
+                
+                      <div class="form-group">
+                        <label>Link Name</label>
+                        <input type="text" name="name" value="" class="form-control">
+                      </div>
+             
+                    </form>
+                  </div>
+                </div>
+  
+              </li>
+   
+            </ul>
+        </section>
+ 
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="http://psfpro.github.io/bootstrap-html5sortable/jquery.sortable.js"></script>
+	<script>
+		$(function() {
+ 
+            $('#menuitems').sortable({
+                placeholderClass: 'list-group-item',
+                handle: 'span',
+                
+            });
+ 
+ 
+
+		});
+	</script>
+</body>
+</html>

@@ -29,6 +29,7 @@ class MenuController extends Controller
             $menu->slug = Menuitem::where('id',$menu->id)->value('slug');
             $menu->target = Menuitem::where('id',$menu->id)->value('target');
             $menu->type = Menuitem::where('id',$menu->id)->value('type');
+            $menu->depth = Menuitem::where('id',$menu->id)->value('depth');
             if(!empty($menu->children[0])){
               foreach ($menu->children[0] as $child) {
                 $child->title = Menuitem::where('id',$child->id)->value('title');
@@ -36,6 +37,7 @@ class MenuController extends Controller
                 $child->slug = Menuitem::where('id',$child->id)->value('slug');
                 $child->target = Menuitem::where('id',$child->id)->value('target');
                 $child->type = Menuitem::where('id',$child->id)->value('type');
+                $menu->depth = Menuitem::where('id',$menu->id)->value('depth');
               }  
             }
           }
@@ -54,6 +56,7 @@ class MenuController extends Controller
               $menu->slug = Menuitem::where('id',$menu->id)->value('slug');
               $menu->target = Menuitem::where('id',$menu->id)->value('target');
               $menu->type = Menuitem::where('id',$menu->id)->value('type');
+              $menu->depth = Menuitem::where('id',$menu->id)->value('depth');
               if(!empty($menu->children[0])){
                 foreach ($menu->children[0] as $child) {
                   $child->title = Menuitem::where('id',$child->id)->value('title');
@@ -61,6 +64,7 @@ class MenuController extends Controller
                   $child->slug = Menuitem::where('id',$child->id)->value('slug');
                   $child->target = Menuitem::where('id',$child->id)->value('target');
                   $child->type = Menuitem::where('id',$child->id)->value('type');
+                  $child->depth = Menuitem::where('id',$child->id)->value('depth');
                 }  
               }
             }
@@ -69,7 +73,7 @@ class MenuController extends Controller
           }                                   
         }           
       }
-      return view ('admin.menus.menu',['menus'=>Menu::all(),'desiredMenu'=>$desiredMenu,'menuitems'=>$menuitems]);
+      return view ('admin.menus.menu',['menus'=>$menuitems,'desiredMenu'=>$desiredMenu,'menuitems'=>$menuitems]);
     }	
 
     /**
@@ -102,20 +106,7 @@ class MenuController extends Controller
 }	
 
       
-      public function addCustomLink(Request $request){
-        $data = $request->all();
-        $menuid = $request->menuid;
-        $menu = Menu::findOrFail($menuid);
-   
-            $data['title'] = $request->link;
-            $data['slug'] = $request->url;
-            $data['type'] = 'custom';
-            $data['menu_id'] = $menuid;
-            if(Menuitem::create($data)){
-                return 'OK';
-            }
-      }
-
+ 
       public function updateMenu(Request $request){
         $newdata = $request->all(); 
         $menu=Menu::findOrFail($request->menuid);            
@@ -155,5 +146,47 @@ class MenuController extends Controller
         return redirect()->back();
       }
 
+
+
+      public function addPostToMenu(Request $request){
+        $data = $request->all();
+        $menuid = $request->menuid;
+        $ids = $request->ids;
+        $menu = menu::findOrFail($menuid);
+        if($menu->content == ''){
+          foreach($ids as $id){
+            $data['title'] = post::where('id',$id)->value('title');
+            $data['slug'] = post::where('id',$id)->value('slug');
+            $data['type'] = 'post';
+            $data['menu_id'] = $menuid;
+            $data['updated_at'] = NULL;
+            menuitem::create($data);
+          }
+        }else{
+          $olddata = json_decode($menu->content,true); 
+          foreach($ids as $id){
+            $data['title'] = post::where('id',$id)->value('title');
+            $data['slug'] = post::where('id',$id)->value('slug');
+            $data['type'] = 'post';
+            $data['menu_id'] = $menuid;
+            $data['updated_at'] = NULL;
+            menuitem::create($data);
+          }
+          foreach($ids as $id){
+            $array['title'] = post::where('id',$id)->value('title');
+            $array['slug'] = post::where('id',$id)->value('slug');
+            $array['name'] = NULL;
+            $array['type'] = 'post';
+            $array['target'] = NULL;
+            $array['id'] = menuitem::where('slug',$array['slug'])->where('name',$array['name'])->where('type',$array['type'])->orderby('id','DESC')->value('id');                
+            $array['children'] = [[]];
+            array_push($olddata[0],$array);
+            $oldata = json_encode($olddata);
+            $menu->update(['content'=>$olddata]);
+          }
+        }
+      }
+
+      
       
 }

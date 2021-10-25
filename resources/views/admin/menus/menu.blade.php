@@ -3,12 +3,12 @@
 @section('content')
 @push('styles')
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link href="{{ asset('admin/assets/abdo-menu/style.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('admin/assets/menu/style.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 <?php
 $currentUrl = url()->current();
 ?>
-<div class="container" id="kt_content_container">
+ 
 
 
 
@@ -48,11 +48,7 @@ $currentUrl = url()->current();
 													<div class="accordion-section-content ">
 														<div class="inside">
 															<div class="customlinkdiv" id="customlinkdiv">
-																<p id="menu-item-url-wrap">
-																	<label class="howto" for="custom-menu-item-url"> <span>URL</span>&nbsp;&nbsp;&nbsp;
-																		<input id="custom-menu-item-url" name="url" type="text" class="menu-item-textbox " placeholder="url">
-																	</label>
-																</p>
+															 
 
 																<p id="menu-item-name-wrap">
 																	<label class="howto" for="custom-menu-item-name"> <span>Label</span>&nbsp;
@@ -60,18 +56,7 @@ $currentUrl = url()->current();
 																	</label>
 																</p>
 
-																@if(!empty($roles))
-																<p id="menu-item-role_id-wrap">
-																	<label class="howto" for="custom-menu-item-name"> <span>Role</span>&nbsp;
-																		<select id="custom-menu-item-role" name="role">
-																			<option value="0">Select Role</option>
-																			@foreach($roles as $role)
-																				<option value="{{ $role->$role_pk }}">{{ ucfirst($role->$role_title_field) }}</option>
-																			@endforeach
-																		</select>
-																	</label>
-																</p>
-																@endif
+																 
 
 																<p class="button-controls">
 
@@ -121,85 +106,14 @@ $currentUrl = url()->current();
 												<div id="post-body">
 													<div id="post-body-content">
 
-														@if(request()->has("menu"))
-														<h3>Menu Structure</h3>
-														<div class="drag-instructions post-body-plain" style="">
-															<p>
-																Place each item in the order you prefer. Click on the arrow to the right of the item to display more configuration options.
-															</p>
-														</div>
+												 
 
-														@else
-														<h3>Menu Creation</h3>
-														<div class="drag-instructions post-body-plain" style="">
-															<p>
-																Please enter the name and select "Create menu" button
-															</p>
-														</div>
-														@endif
-
-														<ul class="menu ui-sortable" id="menu-to-edit">
-															@if(isset($menus))
-															@foreach($menus as $m)
-
-
-															<li id="menu-item-1" class="menu-item menu-item-depth-0 menu-item-page menu-item-edit-inactive pending" style="display: list-item;">
-																<dl class="menu-item-bar">
-																<dt class="menu-item-handle">
-																<span class="item-title"> <span class="menu-item-title"> <span id="menutitletemp_1">label Link</span> <span style="color: transparent;">|1|</span> </span> <span class="is-submenu" style="">Subelement</span> </span>
-																<span class="item-controls"> <span class="item-type">Link</span> <span class="item-order hide-if-js"> <a href="{{ $currentUrl }}?action=move-up-menu-item&menu-item=1&_wpnonce=8b3eb7ac44" class="item-move-up"><abbr title="Move Up">↑</abbr></a> | <a href="{{ $currentUrl }}?action=move-down-menu-item&menu-item=1&_wpnonce=8b3eb7ac44" class="item-move-down"><abbr title="Move Down">↓</abbr></a> </span> <a class="item-edit" id="edit-1" title=" " href="{{ $currentUrl }}?edit-menu-item=1#menu-item-settings-1"> </a> </span>
-																</dt>
-																</dl>
-																
-																<div class="menu-item-settings" id="menu-item-settings-1">
-																<input type="hidden" class="edit-menu-item-id" name="menuid_1" value="1" />
-																<p class="description description-thin">
-																<label for="edit-menu-item-title-1"> Label
-																<br>
-																<input type="text" id="idlabelmenu_1" class="widefat edit-menu-item-title" name="idlabelmenu_1" value="label Link">
-																</label>
-																</p>
-																
-																<p class="field-css-classes description description-thin">
-																<label for="edit-menu-item-classes-1"> Class CSS (optional)
-																<br>
-																<input type="text" id="clases_menu_1" class="widefat code edit-menu-item-classes" name="clases_menu_1" value="Class Value">
-																</label>
-																</p>
-																
-																<p class="field-css-url description description-wide">
-																<label for="edit-menu-item-url-1"> Url
-																<br>
-																<input type="text" id="url_menu_1" class="widefat code edit-menu-item-url" id="url_menu_1" value="LINK">
-																</label>
-																</p>
-																
-																
-																<p class="field-move hide-if-no-js description description-wide">
-																<label> <span>Move</span> <a href="{{ $currentUrl }}" class="menus-move-up" style="display: none;">Move up</a> <a href="{{ $currentUrl }}" class="menus-move-down" title="Mover uno abajo" style="display: inline;">Move Down</a> <a href="{{ $currentUrl }}" class="menus-move-left" style="display: none;"></a> <a href="{{ $currentUrl }}" class="menus-move-right" style="display: none;"></a> <a href="{{ $currentUrl }}" class="menus-move-top" style="display: none;">Top</a> </label>
-																</p>
-																
-																<div class="menu-item-actions description-wide submitbox">
-																
-																<a class="item-delete submitdelete deletion" id="delete-1" href="{{ $currentUrl }}?action=delete-menu-item&menu-item=1&_wpnonce=2844002501">Delete</a>
-																<span class="meta-sep hide-if-no-js"> | </span>
-																<a class="item-cancel submitcancel hide-if-no-js button-secondary" id="cancel-1" href="{{ $currentUrl }}?edit-menu-item=1&cancel=1424297719#menu-item-settings-1">Cancel</a>
-																<span class="meta-sep hide-if-no-js"> | </span>
-																<a onclick="getmenus()" class="button button-primary updatemenu" id="update-1" href="javascript:void(0)">Update item</a>
-																
-																</div>
-																
-																</div>
-																<ul class="menu-item-transport"></ul>
-																</li>
-
-
-
-
-
-															@endforeach
-															@endif
+														<ul style="display: inline;" class="menu ui-sortable" id="menu-to-edit">
+															@include('admin.menus.menu_listing')
 														</ul>
+
+
+
 														<div class="menu-settings">
 
 														</div>
@@ -245,7 +159,7 @@ $currentUrl = url()->current();
 			<div class="clear"></div>
 		</div>
 	</div>
-</div>
+ 
 
 ///////////////////////////////////
 
@@ -258,13 +172,47 @@ $currentUrl = url()->current();
 </div> {{-- // end of container --}}
  
 @endsection
-
 @push('scripts');
-
-  
-
+<script>
+ 
+ 
+ 
+	var menus = {
+		"oneThemeLocationNoMenus" : "",
+		"moveUp" : "Move up",
+		"moveDown" : "Mover down",
+		"moveToTop" : "Move top",
+		"moveUnder" : "Move under of %s",
+		"moveOutFrom" : "Out from under  %s",
+		"under" : "Under %s",
+		"outFrom" : "Out from %s",
+		"menuFocus" : "%1$s. Element menu %2$d of %3$d.",
+		"subMenuFocus" : "%1$s. Menu of subelement %2$d of %3$s."
+	};
+	var arraydata = [];     
+	// var addcustommenur= '{{ route("haddcustommenu") }}';
+	// var updateitemr= '{{ route("hupdateitem")}}';
+	// var generatemenucontrolr= '{{ route("hgeneratemenucontrol") }}';
+	// var deleteitemmenur= '{{ route("hdeleteitemmenu") }}';
+	// var deletemenugr= '{{ route("hdeletemenug") }}';
+	// var createnewmenur= '{{ route("hcreatenewmenu") }}';
+	// var csrftoken="{{ csrf_token() }}";
+	// var menuwr = "{{ url()->current() }}";
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': csrftoken
+		}
+	});
+ 
+ 
+   
+   
+   
+   
+   
+</script>
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="{{asset('admin/assets/abdo-menu/scripts.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/assets/abdo-menu/scripts2.js')}}"></script>
-<script type="text/javascript" src="{{asset('admin/assets/abdo-menu/menu.js')}}"></script>
+<script type="text/javascript" src="{{asset('admin/assets/menu/scripts.js')}}"></script>
+<script type="text/javascript" src="{{asset('admin/assets/menu/scripts2.js')}}"></script>
+<script type="text/javascript" src="{{asset('admin/assets/menu/menu.js')}}"></script>
 @endpush

@@ -14,7 +14,7 @@ Route::get('/', 'HomeController@index')->name('admin.dashboard');
 
 // Route::resource('posts','PostController'); // Post
 
-/*
+ 
 // Menu Management
  Route::post('/create-menu',[App\Http\Controllers\admin\MenuController::class,'store'])->name('create-menu');	
 Route::get('/manage-menus/{id?}',[App\Http\Controllers\admin\menuController::class,'index'])->name('manage-menus');	
@@ -26,7 +26,22 @@ Route::get('delete-menuitem/{id}/{key}/{in?}',[App\Http\Controllers\admin\MenuCo
 Route::get('delete-menu/{id}',[App\Http\Controllers\admin\MenuController::class,'destroy'])->name('delete-menu');	
  
 
+ 
+//Route::get('wmenuindex', array('uses'=>'\Harimayco\Menu\Controllers\MenuController@wmenuindex'));
+// $path = rtrim(config('menu.route_path'));
+// Route::post($path . '/addcustommenu', array('as' => 'haddcustommenu', 'uses' => '\Harimayco\Menu\Controllers\MenuController@addcustommenu'));
+// Route::post($path . '/deleteitemmenu', array('as' => 'hdeleteitemmenu', 'uses' => '\Harimayco\Menu\Controllers\MenuController@deleteitemmenu'));
+// Route::post($path . '/deletemenug', array('as' => 'hdeletemenug', 'uses' => '\Harimayco\Menu\Controllers\MenuController@deletemenug'));
+// Route::post($path . '/createnewmenu', array('as' => 'hcreatenewmenu', 'uses' => '\Harimayco\Menu\Controllers\MenuController@createnewmenu'));
+// Route::post($path . '/generatemenucontrol', array('as' => 'hgeneratemenucontrol', 'uses' => '\Harimayco\Menu\Controllers\MenuController@generatemenucontrol'));
+// Route::post($path . '/updateitem', array('as' => 'hupdateitem', 'uses' => '\Harimayco\Menu\Controllers\MenuController@updateitem'));
+
+
 // End Of Menu Management
+
+
+Route::resource('pages','PageController');// Pages
+
 
 // Route::resource('banners','BannerController');// Bnnner
 // Route::resource('users','UserController');// Banner

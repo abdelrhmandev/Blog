@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '3db018b2aeacdbb3db9ee821ac33c2f750a2e611',
+        'reference' => '72643dc17ae9e130b08ffd3bbfebfad5989e1a58',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -228,6 +228,15 @@
             'aliases' => array(),
             'reference' => '8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
             'dev_requirement' => true,
+        ),
+        'harimayco/laravel-menu' => array(
+            'pretty_version' => '1.4.5',
+            'version' => '1.4.5.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../harimayco/laravel-menu',
+            'aliases' => array(),
+            'reference' => '060bd4be8d90cd9f47b1b46e2cbdc7194e6b8e9e',
+            'dev_requirement' => false,
         ),
         'illuminate/auth' => array(
             'dev_requirement' => false,
@@ -454,7 +463,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '3db018b2aeacdbb3db9ee821ac33c2f750a2e611',
+            'reference' => '72643dc17ae9e130b08ffd3bbfebfad5989e1a58',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -931,8 +940,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(

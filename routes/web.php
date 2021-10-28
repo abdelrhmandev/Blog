@@ -12,13 +12,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function () {
-
-// dd(bcrypt(12345678));
-
-    return view('welcome');
+return view('welcome');
 });
 
-
+ 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
  

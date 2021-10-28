@@ -1,7 +1,7 @@
 var arraydata = [];
 function getmenus() {
     $("#spinsavemenu").show()
-
+	arraydata = [];
     var cont = 0;
     $("#menu-to-edit li").each(function(index) {
         var dept = 0;
@@ -12,7 +12,7 @@ function getmenus() {
                 dept = i;
             }
         };
-        var textoiner = $(this).find(".item-edit").context.outerText;
+        var textoiner = $(this).find(".item-edit").text();
 	  var id = this.id.split("-");
         var textoexplotado = textoiner.split("|"); 
         var padre = 0;  
@@ -32,49 +32,22 @@ function getmenus() {
 
 				function addcustommenu() {
 					$("#spincustomu").show();
-
+					 
+					var dataString =  $('#nav-menu-meta').serialize(); 
+			
 					$.ajax({
-						data : {
-							labelmenu : $("#custom-menu-item-name").val(),
-							linkmenu : $("#custom-menu-item-url").val(),
-							idmenu : $("#idmenu").val()
-						},
-
+						data: dataString,
 						url : addcustommenur,
 						type : 'POST',
 						success : function(response) {
 							$("#spincustomu").hide();
-							window.location = "";
+							// window.location = "";
 
 						}
 					});
 				}
 
-				function updateitem(id) {
-
-					var label = $("#idlabelmenu_" + id).val()
-					var clases = $("#clases_menu_" + id).val()
-					var url = $("#url_menu_" + id).val()
-					$.ajax({
-						data : {
-							label : label,
-							clases : clases,
-							url : url,
-							id : id
-						},
-
-						url :updateitemr,
-						type : 'POST',
-						success : function(response) {
-
-							$("#menutitletemp_" + id).val(label)
-
-							console.log("aqu llega")
-							//$("#spinsavemenu").hide();
-						}
-					});
-				}
-
+ 
 				function actualizarmenu() {
 
 					$.ajax({
@@ -87,10 +60,10 @@ function getmenus() {
 
 						url : generatemenucontrolr,
 						type : 'POST',
-						success : function(response) {
-
-							console.log("aqu llega")
-							$("#spinsavemenu").hide();
+						success : function(response) {	
+							alert('SUCCESS');					 
+							// console.log("aqu llega")
+							// $("#spinsavemenu").hide();
 						}
 					});
 				}

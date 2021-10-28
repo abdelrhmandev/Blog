@@ -4,27 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCitiesTable extends Migration {
+class CreateVendorsTable extends Migration {
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('cities', function (Blueprint $table) {
+		Schema::create('vendors', function (Blueprint $table) {
             $table->id();
-			$table->unsignedBigInteger('country_id');
-			$table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            // $table->rememberToken();
             $table->timestamps();
 			});
-		Schema::create('city_translations', function (Blueprint $table) {            
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->string('lang');
-            $table->unsignedBigInteger('city_id');
-            $table->primary(['city_id','lang']);
-            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');       
-		});	
+ 
 	}
 
 	/**
@@ -33,7 +29,7 @@ class CreateCitiesTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::dropIfExists('cities');
-		Schema::dropIfExists('city_translations');
+		Schema::dropIfExists('vendors');
+ 
 	}
 }

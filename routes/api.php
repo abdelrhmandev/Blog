@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResources(
-	[
-		'posts' => 'API\admin\PostController',
-        'pages' => 'API\admin\PageController',
-	]
-);
+// Route::apiResources(
+// 	[
+// 		'posts' => 'API\admin\PostController',
+//         'pages' => 'API\admin\PageController',
+// 	]
+// );
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -17,7 +17,7 @@
         @endforeach
 </ul>
 
-
+{{ csrf_token() }}XXXXXXXXXxx
 
 <div class="container" id="kt_content_container">
     <!--begin::Card-->

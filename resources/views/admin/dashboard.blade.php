@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title') {{ $page_title }} @endsection
+@section('title') {{ $page_title }}  
 @section('content')
 
 
@@ -14,6 +14,9 @@
                 <div class="card-header mt-6">
                     <!--begin::Card title-->
                     <div class="card-title flex-column">
+
+                        @csrf
+
                         <h3 class="fw-bolder mb-1">Tasks Summary</h3>
                         <div class="fs-6 fw-bold text-gray-400">24 Overdue Tasks</div>
                     </div>

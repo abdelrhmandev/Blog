@@ -2,8 +2,8 @@
 namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Harimayco\Menu\Models\Menus;
-use Harimayco\Menu\Models\MenuItems;
+use App\Models\Menus;
+use App\Models\MenuItems;
 use Session;
 
 class MenuController extends Controller

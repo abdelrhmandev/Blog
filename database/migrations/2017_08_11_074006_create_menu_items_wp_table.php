@@ -15,10 +15,11 @@ class CreateMenuItemsWpTable extends Migration
     {
         Schema::create( config('menu.table_prefix') . config('menu.table_name_items') , function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('target_type');
-            $table->integer('target_id');
+            $table->string('label');
+            $table->string('link');
             $table->unsignedBigInteger('parent')->default(0);
             $table->integer('sort')->default(0);
+            $table->string('class')->nullable();
             $table->unsignedBigInteger('menu');
             $table->integer('depth')->default(0);
             $table->timestamps();

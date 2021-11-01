@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Traits\FlashMessages;
 
 class HomeController extends Controller
 {
+    //https://www.larashout.com/base-controller-and-repository
+    use FlashMessages;
     /**
      * Create a new controller instance.
      *

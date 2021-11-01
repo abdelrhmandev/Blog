@@ -20,6 +20,7 @@ class CreateTagsTable extends Migration
         Schema::create('tag_translations', function (Blueprint $table) {                 
             $table->bigInteger('tag_id')->unsigned();       
             $table->string('title');
+            $table->string('slug')->unique();
             $table->string('lang');
             $table->primary(['tag_id','lang']);
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');		

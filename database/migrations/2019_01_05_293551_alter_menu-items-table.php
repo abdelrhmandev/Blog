@@ -14,8 +14,8 @@ class AlterMenuItemsTable extends Migration
     public function up()
     {
         Schema::table(config('menu.table_prefix') . config('menu.table_name_items'), function ($table) {
-            $table->string('target_type',100);
-            $table->integer('target_id');
+            $table->string('target_type',100)->after('id');
+            $table->integer('target_id')->after('target_type');
         });
     }
 

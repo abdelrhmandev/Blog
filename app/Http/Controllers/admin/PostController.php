@@ -13,4 +13,27 @@ class PostController extends Controller
     {
         return view('admin.posts.create');
     }
+
+
+    
+			public function store(Request $request){
+                $post = new Post;
+                $post->title = $request->title;
+                $post->description = $request->description;
+                $post->save();
+                $tags = $request->tag;
+                $tagNames = [];        
+                if (!empty($tags)) {
+                    foreach ($tags as $tagName)
+                    {
+                        $tag = Tag::firstOrCreate(['name'=>$tagName, 'slug'=>Str::slug($tagName)]);                
+                        if($tag)
+                        {
+                            $tagNames[] = $tag->id;
+                        }
+                    }
+                    $post->tags()->syncWithoutDetaching($tagNames);
+                }
+                return redirect()->route('posts')->with('success','Post created successfully');;
+            }
 }

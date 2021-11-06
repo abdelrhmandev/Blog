@@ -15,7 +15,7 @@ class CreateAttributesTable extends Migration
         Schema::create('attributes', function (Blueprint $table) { // https://www.larashout.com/attributes-section-part-1
             $table->bigIncrements('id');
             $table->string('code')->unique();
-            $table->string('name');
+            $table->string('title');
             $table->enum('frontend_type', ['select', 'radio', 'text', 'text_area']);
             $table->boolean('is_filterable')->default(0);
             $table->boolean('is_required')->default(0);

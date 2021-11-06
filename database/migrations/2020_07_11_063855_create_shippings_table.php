@@ -24,6 +24,7 @@ class CreateShippingsTable extends Migration
         Schema::create('shipping_translations', function (Blueprint $table) {                 
             $table->bigInteger('shipping_id')->unsigned();       
             $table->string('title');
+            $table->string('slug')->unique();
             $table->string('lang');
             $table->primary(['shipping_id','lang']);
             $table->foreign('shipping_id')->references('id')->on('shippings')->onDelete('cascade');		

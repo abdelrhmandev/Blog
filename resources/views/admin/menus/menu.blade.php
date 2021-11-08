@@ -4,8 +4,11 @@
 
 @once
     @push('styles')
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">        
         <link href="{{asset('vendor/harimayco-menu/style.css')}}" rel="stylesheet">
+        @if(LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
+        <link href="{{asset('vendor/harimayco-menu/style_rtl.css')}}" rel="stylesheet">
+        @endif
     @endpush
 @endonce
 

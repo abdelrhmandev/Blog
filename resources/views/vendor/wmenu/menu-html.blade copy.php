@@ -10,40 +10,29 @@ $currentUrl = url()->current();
 
 						<div class="wrap">
 
-							 
+							<div class="manage-menus">
 								<form method="get" action="{{ $currentUrl }}">
-							
-									<div class="notice d-flex bg-light-primary rounded border-primary border border-dashed rounded-3 p-6">
-										<!--begin::Wrapper-->
-										<div class="d-flex flex-stack flex-grow-1">
-											<!--begin::Content-->
-											<div class="fw-bold">
-												<h4 class="text-gray-900 fw-bolder">This is a very important privacy notice!</h4>
-												
-												 
-													<select name="card_expiry_month" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Month">
-														<option></option>
-														<option value="1">1</option>
-									 
-													</select>
-											 
- 											 
-												
+									<label for="menu" class="selected-menu">{{ trans('menu.select_menu_to_edit')}}:</label>
 
-												<div class="fs-6 text-gray-700">Writing headlines for blog posts is much science and probably cool audience.
-												<a href="#" class="fw-bolder">Learn more</a>.</div>
-											</div>
+@php
+$html = '<select name="menu" class="menu_nc form-control search-select">';
 
-											
+foreach ($menulist as $key => $val) {
+	$active = '';
+	if (request()->input('menu') == $key) {
+		$active = 'selected="selected"';
+	}
+	$html .= '<option ' . $active . ' value="' . $key . '">' . $val . '</option>';
+}
+echo $html .= '</select>';
+@endphp
 
-											<!--end::Content-->
-										</div>
-										<!--end::Wrapper-->
-									</div>
-
-
- 								</form>
-							 
+									<span class="submit-btn">
+										<input type="submit" class="button-secondary" value="{{ trans('menu.choose_menu')}}">
+									</span>
+									<span class="add-new-menu-action"> or <a href="{{ $currentUrl }}?action=edit&menu=0">{{ trans('menu.create')}}</a>. </span>
+								</form>
+							</div>
 							<div id="nav-menus-frame">
 
 								@if(request()->has('menu')  && !empty(request()->input("menu")))

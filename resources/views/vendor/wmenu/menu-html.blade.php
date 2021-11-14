@@ -22,7 +22,7 @@ $currentUrl = url()->current();
 				</svg>
 			</span>
 			<!--end::Svg Icon-->
-			<h3 class="fw-bolder m-0 text-gray-800">Jan 23, 2021</h3>
+			<h3 class="fw-bolder m-0 text-gray-800">sdasd asdasdssd sd dsd ds sdsads dsads asdasd asd</h3>
 		</div>
 		<!--end::Title-->
 		<!--begin::Toolbar-->

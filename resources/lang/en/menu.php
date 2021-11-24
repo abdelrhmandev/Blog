@@ -1,5 +1,5 @@
 <?php
 return [
-'menus'=>'القوائم',
-'link'=>'الرابط',
+'menus'=>'Menus',
+'link'=>'Link',
 ];

@@ -439,7 +439,7 @@
   color: #bbb;
 }
 #hwpwrap #screen-meta-links a.screen-meta-active:after {
-  content: '\f0de';
+  content: '\f144';
 }
 #hwpwrap #screen-meta-links a.show-settings:hover {
   text-decoration: none;
@@ -915,7 +915,7 @@
   display: block;
 }
 #hwpwrap .js .meta-box-sortables .postbox .handlediv:before, #hwpwrap .js .sidebar-name .sidebar-name-arrow:before {
-  content: '\f0de';
+  content: '\f144';
 }
 #hwpwrap .js .meta-box-sortables .postbox.closed .handlediv:before, #hwpwrap .js .widgets-holder-wrap.closed .sidebar-name-arrow:before {
   content: '\f140';
@@ -1032,7 +1032,7 @@
   top: -2px;
 }
 #hwpwrap #customize-info.open .accordion-section-title:after, #hwpwrap .control-section.open .accordion-section-title:after, #hwpwrap .nav-menus-php .menu-item-edit-active .item-edit:before, #hwpwrap .widget.open .widget-top a.widget-action:after {
-  content: '\f0de';
+  content: '\f144';
 }
 #hwpwrap .ui-draggable-handle, #hwpwrap .ui-sortable-handle {
   -ms-touch-action: none;

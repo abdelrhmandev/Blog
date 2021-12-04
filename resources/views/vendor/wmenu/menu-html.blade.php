@@ -83,11 +83,7 @@ $currentUrl = url()->current();
 								<div id="menu-management-liquid">
 									<div id="menu-management">
 										<form id="update-nav-menu" action="" method="post" enctype="multipart/form-data">
-<<<<<<< HEAD
 											<div class="menu-edit ">
-=======
-											<div class="menu-edit">
->>>>>>> 97f617642ceb25969f9d21155fa673c0bae5a50a
 												<div id="nav-menu-header">
 													<div class="major-publishing-actions">
 														<label class="menu-name-label howto open-label" for="menu-name"> <span>Name</span>
@@ -132,12 +128,7 @@ $currentUrl = url()->current();
 														</div>
 														@endif
 
-<<<<<<< HEAD
 														<ul style="display:inline" class="menu ui-sortable" id="menu-to-edit">
-=======
-														 
-														<ul class="menu ui-sortable" id="menu-to-edit">
->>>>>>> 97f617642ceb25969f9d21155fa673c0bae5a50a
 															@if(isset($menus))
 															@foreach($menus as $m)
 															<li id="menu-item-{{$m->id}}" class="menu-item menu-item-depth-{{$m->depth}} menu-item-page menu-item-edit-inactive pending" style="display: list-item;">
